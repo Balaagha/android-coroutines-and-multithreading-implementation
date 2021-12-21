@@ -1,6 +1,8 @@
 package com.example.coroutinesandmultithreadingimplementation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.Choreographer
 import android.view.MenuItem
 import android.view.View
 import androidx.core.view.isVisible
@@ -10,6 +12,8 @@ import androidx.navigation.ui.NavigationUI
 import com.example.coroutinesandmultithreadingimplementation.common.BaseActivity
 import com.example.coroutinesandmultithreadingimplementation.common.ToolbarManipulator
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.reflect.Field
+import java.lang.reflect.Modifier
 
 class MainActivity : BaseActivity(), ToolbarManipulator {
 
@@ -32,6 +36,21 @@ class MainActivity : BaseActivity(), ToolbarManipulator {
 
         setupToolbar()
         setupNavigation()
+        reduceChoreographerSkippedFramesWarningThreshold()
+    }
+
+    @SuppressLint("SoonBlockedPrivateApi")
+    private fun reduceChoreographerSkippedFramesWarningThreshold() {
+        var field: Field? = null
+        try {
+            field = Choreographer::class.java.getDeclaredField("SKIPPED_FRAME_WARNING_LIMIT")
+            field.isAccessible = true
+            field.setInt(field, field.modifiers and Modifier.FINAL.inv())
+            field[null] = 1
+        } catch (e: NoSuchFieldException) {
+            // probably failed to change Choreographer's field, but it's not critical
+        } catch (e: IllegalAccessException) {
+        }
     }
 
     private fun setupToolbar() {

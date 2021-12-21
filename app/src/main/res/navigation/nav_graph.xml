@@ -11,8 +11,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.home.SecondFragment"
-        android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        android:id="@+id/problem1Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.main.problem.Problem1Fragment"
+        android:label="Problem1Fragment"
+        tools:layout="@layout/fragment_problem1"/>
 </navigation>

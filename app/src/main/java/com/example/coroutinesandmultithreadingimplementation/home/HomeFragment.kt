@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment(), HomeArrayAdapter.Listener {
 
     override fun onScreenClicked(screenReachableFromHome: ScreenReachableFromHome?) {
         when (screenReachableFromHome) {
-            ScreenReachableFromHome.TEMP -> Toast.makeText(context, "Temp clicked", Toast.LENGTH_SHORT).show()
+            ScreenReachableFromHome.PROBLEM_1 -> findNavController().navigate(R.id.problem1Fragment)
         }
     }
 
