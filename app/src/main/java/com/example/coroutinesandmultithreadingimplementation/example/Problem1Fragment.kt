@@ -1,16 +1,16 @@
-package com.example.coroutinesandmultithreadingimplementation.main.problem
+package com.example.coroutinesandmultithreadingimplementation.example
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.coroutinesandmultithreadingimplementation.R
+import com.example.coroutinesandmultithreadingimplementation.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_problem1.*
 
 
-class Problem1Fragment : Fragment() {
+class Problem1Fragment : BaseFragment() {
     private val ITERATIONS_COUNTER_DURATION_SEC = 10
 
     override fun onCreateView(
@@ -23,6 +23,8 @@ class Problem1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        compositionRoot.getToolbarManipulator()?.setScreenTitle("Problem 1")
+
         btnMain.setOnClickListener {
             countIterations()
         }

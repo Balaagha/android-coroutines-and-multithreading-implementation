@@ -3,8 +3,7 @@ package com.example.coroutinesandmultithreadingimplementation.home
 enum class ScreenReachableFromHome( name: String) {
 
     PROBLEM_1("ANR Problem(More time action in UI Thread)"),
-    SOLUTION_1("Exercise 1"),
-    EXERCISE_2("Exercise 2"),
+    PROBLEM_2("GC memory leaks problem"),
     UI_THREAD_DEMONSTRATION("UI Thread Demo"),
     UI_HANDLER_DEMONSTRATION("UI Handler Demo"),
     CUSTOM_HANDLER_DEMONSTRATION("Custom Handler Demo"),

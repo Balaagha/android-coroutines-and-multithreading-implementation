@@ -12,7 +12,17 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/problem1Fragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.main.problem.Problem1Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem1Fragment"
         android:label="Problem1Fragment"
         tools:layout="@layout/fragment_problem1"/>
+    <fragment
+        android:id="@+id/problem2Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem2Fragment"
+        android:label="fragment_problem2"
+        tools:layout="@layout/fragment_problem2" />
+    <fragment
+        android:id="@+id/uiThreadDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.uithread.UiThreadDemonstrationFragment"
+        android:label="fragment_ui_thread_demonstration"
+        tools:layout="@layout/fragment_ui_thread_demonstration" />
 </navigation>
