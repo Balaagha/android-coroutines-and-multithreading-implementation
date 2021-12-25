@@ -47,6 +47,7 @@ class HomeFragment : BaseFragment(), HomeArrayAdapter.Listener {
             ScreenReachableFromHome.PROBLEM_1 -> findNavController().navigate(R.id.problem1Fragment)
             ScreenReachableFromHome.PROBLEM_2 -> findNavController().navigate(R.id.problem2Fragment)
             ScreenReachableFromHome.UI_THREAD_DEMONSTRATION -> findNavController().navigate(R.id.uiThreadDemonstrationFragment)
+            ScreenReachableFromHome.UI_HANDLER_DEMONSTRATION -> findNavController().navigate(R.id.uiHandlerDemonstrationFragment)
         }
     }
 

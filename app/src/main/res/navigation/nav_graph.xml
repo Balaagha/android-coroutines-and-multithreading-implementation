@@ -25,4 +25,8 @@
         android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.uithread.UiThreadDemonstrationFragment"
         android:label="fragment_ui_thread_demonstration"
         tools:layout="@layout/fragment_ui_thread_demonstration" />
+    <fragment
+        android:id="@+id/uiHandlerDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.uihandler.UiHandlerDemonstrationFragment"
+        android:label="UiHandlerDemonstrationFragment" />
 </navigation>
