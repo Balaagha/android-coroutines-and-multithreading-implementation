@@ -28,5 +28,22 @@
     <fragment
         android:id="@+id/uiHandlerDemonstrationFragment"
         android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.uihandler.UiHandlerDemonstrationFragment"
-        android:label="UiHandlerDemonstrationFragment" />
+        android:label="UiHandlerDemonstrationFragment"
+        tools:layout="@layout/fragment_ui_handler_demonstration" />
+    <fragment
+        android:id="@+id/customHandlerDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.customhandler.CustomHandlerDemonstrationFragment"
+        android:label="CustomHandlerDemonstrationFragment"
+        tools:layout="@layout/fragment_custom_handler_demonstration" />
+    <fragment
+        android:id="@+id/problem3Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem3Fragment"
+        android:label="Problem3Fragment"
+        tools:layout="@layout/fragment_problem3" />
+    <fragment
+        android:id="@+id/atomicityDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.atomicity.AtomicityDemonstrationFragment"
+        android:label="fragment_atomicity_demonstration"
+        tools:layout="@layout/fragment_atomicity_demonstration" />
+
 </navigation>

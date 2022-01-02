@@ -7,7 +7,7 @@ enum class ScreenReachableFromHome( name: String) {
     UI_THREAD_DEMONSTRATION("UI Thread Demo"),
     UI_HANDLER_DEMONSTRATION("UI Handler Demo"),
     CUSTOM_HANDLER_DEMONSTRATION("Custom Handler Demo"),
-    EXERCISE_3("Exercise 3"),
+    PROBLEM_3("Count in back thread and show it in Ui(with runnable)"),
     ATOMICITY_DEMONSTRATION("Atomicity Demo"),
     EXERCISE_4("Exercise 4"),
     THREAD_WAIT_DEMONSTRATION("Thread Wait Demo"),
