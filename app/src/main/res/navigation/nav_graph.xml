@@ -45,5 +45,10 @@
         android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.atomicity.AtomicityDemonstrationFragment"
         android:label="fragment_atomicity_demonstration"
         tools:layout="@layout/fragment_atomicity_demonstration" />
+    <fragment
+        android:id="@+id/problem4Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem4Fragment"
+        android:label="Problem4Fragment"
+        tools:layout="@layout/fragment_problem4" />
 
 </navigation>

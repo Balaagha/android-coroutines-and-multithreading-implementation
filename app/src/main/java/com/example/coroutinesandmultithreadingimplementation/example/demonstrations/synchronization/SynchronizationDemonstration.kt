@@ -26,6 +26,7 @@ object SynchronizationDemonstration {
                             println("Consumer: detected count change " + sCount)
                             localValue = sCount
                         }
+
                         if (sCount >= 5) {
                             return@infinityLoop
                         }
@@ -49,6 +50,12 @@ object SynchronizationDemonstration {
                         localValue++
                         println("Producer: incrementing count to $localValue")
                         sCount = localValue
+
+                    }
+                    try {
+                        sleep(1000)
+                    } catch (e: InterruptedException) {
+                        return
                     }
                 }
             }
