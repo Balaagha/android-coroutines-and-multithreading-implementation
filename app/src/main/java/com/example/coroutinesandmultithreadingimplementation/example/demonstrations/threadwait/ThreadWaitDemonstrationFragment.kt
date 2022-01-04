@@ -1,9 +1,10 @@
-package com.example.coroutinesandmultithreadingimplementation.example
+package com.example.coroutinesandmultithreadingimplementation.example.demonstrations.threadwait
 
 import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,22 +12,27 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.WorkerThread
 import com.example.coroutinesandmultithreadingimplementation.R
+import com.example.coroutinesandmultithreadingimplementation.example.demonstrations.synchronization.SynchronizationDemonstration
 import kotlinx.android.synthetic.main.fragment_problem4.*
 import java.math.BigInteger
+import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
 
-class Problem4Fragment : Fragment() {
+class ThreadWaitDemonstrationFragment : Fragment() {
 
 
     companion object {
         private const val MAX_TIMEOUT_MS = 1000
     }
 
+    private val THREADS_COMPLETION_LOCK = Object()
+
     private val mUiHandler = Handler(Looper.getMainLooper())
 
     private var mNumberOfThreads = 0 // safe
     private var mThreadsComputationRanges: Array<ComputationRange?> = arrayOf() // safe
+
     @Volatile
     private var mThreadsComputationResults: Array<BigInteger?>? = arrayOf() // safe
 
@@ -58,6 +64,8 @@ class Problem4Fragment : Fragment() {
                 requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(btnCompute.windowToken, 0)
             val argument: Int = Integer.valueOf(edtArgument.text.toString())
+            Log.d("myTag",
+                "in onViewCreated| thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
             computeFactorial(argument, getTimeout())
         })
 
@@ -85,6 +93,8 @@ class Problem4Fragment : Fragment() {
 
     private fun computeFactorial(factorialArgument: Int, timeout: Int) {
         Thread {
+            Log.d("myTag",
+                "in computeFactorial| thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
             initComputationParams(factorialArgument, timeout)
             startComputation()
             waitForThreadsResultsOrTimeoutOrAbort()
@@ -93,7 +103,8 @@ class Problem4Fragment : Fragment() {
     }
 
     private fun initComputationParams(factorialArgument: Int, timeout: Int) {
-        mNumberOfThreads = if (factorialArgument < 20) 1 else Runtime.getRuntime().availableProcessors()
+        mNumberOfThreads =
+            if (factorialArgument < 20) 1 else Runtime.getRuntime().availableProcessors()
         mNumOfFinishedThreads.set(0)
         mAbortComputation = false
 
@@ -124,6 +135,8 @@ class Problem4Fragment : Fragment() {
     private fun startComputation() {
         for (i in 0 until mNumberOfThreads) {
             Thread {
+                Log.d("myTag",
+                    "in startComputation at start | thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
                 val rangeStart = mThreadsComputationRanges[i]?.start
                 val rangeEnd = mThreadsComputationRanges[i]?.end
                 var product = BigInteger("1")
@@ -135,32 +148,35 @@ class Problem4Fragment : Fragment() {
                 }
                 mThreadsComputationResults?.set(i, product)
                 mNumOfFinishedThreads.incrementAndGet()
+                synchronized(THREADS_COMPLETION_LOCK) {
+                    Log.d("myTag",
+                        "in startComputation at THREADS_COMPLETION_LOCK notifyAll() | thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
+                    THREADS_COMPLETION_LOCK.notify()
+                }
             }.start()
         }
     }
 
     @WorkerThread
     private fun waitForThreadsResultsOrTimeoutOrAbort() {
-        while (true) {
-            if (mNumOfFinishedThreads.get() == mNumberOfThreads) {
-                break
-            } else if (mAbortComputation) {
-                break
-            } else if (isTimedOut()) {
-                break
-            } else {
-                try {
-                    Thread.sleep(100)
-                } catch (e: InterruptedException) {
-                    // do nothing and keep looping
-                }
+        while (mNumOfFinishedThreads.get() != mNumberOfThreads && !mAbortComputation && !isTimedOut()) {
+            synchronized(THREADS_COMPLETION_LOCK) {
+                Log.d("myTag",
+                    "in waitForThreadsResultsOrTimeoutOrAbort at synchronized(THREADS_COMPLETION_LOCK) | thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
+                THREADS_COMPLETION_LOCK.wait(getRemainingMillisToTimeout())
             }
         }
+    }
+
+    private fun getRemainingMillisToTimeout(): Long {
+        return mComputationTimeoutTime - System.currentTimeMillis()
     }
 
     @WorkerThread
     private fun processComputationResults() {
         var resultString: String
+        Log.d("myTag",
+            "in processComputationResults at start | thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
         resultString = if (mAbortComputation) {
             "Computation aborted"
         } else {
@@ -173,7 +189,9 @@ class Problem4Fragment : Fragment() {
         }
         val finalResultString = resultString
         mUiHandler.post {
-            if (!this@Problem4Fragment.isStateSaved) {
+            if (!this@ThreadWaitDemonstrationFragment.isStateSaved) {
+                Log.d("myTag",
+                    "in processComputationResults at handler | thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
                 txtResult.text = finalResultString
                 btnCompute.isEnabled = true
             }
@@ -198,6 +216,6 @@ class Problem4Fragment : Fragment() {
         return System.currentTimeMillis() >= mComputationTimeoutTime
     }
 
-    data class ComputationRange( var start: Long, var end: Long)
+    data class ComputationRange(var start: Long, var end: Long)
 
 }

@@ -9,7 +9,7 @@ enum class ScreenReachableFromHome( name: String) {
     CUSTOM_HANDLER_DEMONSTRATION("Custom Handler Demo"),
     PROBLEM_3("Count in back thread and show it in Ui(with runnable)"),
     ATOMICITY_DEMONSTRATION("Atomicity Demo"),
-    EXERCISE_4("Exercise 4"),
+    EXERCISE_4("Multithreading Problem(Factorial Calculation)"),
     THREAD_WAIT_DEMONSTRATION("Thread Wait Demo"),
     EXERCISE_5("Exercise 5"),
     DESIGN_WITH_THREADS_DEMONSTRATION("Design Demo: Threads"),
