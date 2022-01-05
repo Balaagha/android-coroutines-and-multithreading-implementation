@@ -5,18 +5,16 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.WorkerThread
+import androidx.fragment.app.Fragment
 import com.example.coroutinesandmultithreadingimplementation.R
-import com.example.coroutinesandmultithreadingimplementation.example.demonstrations.synchronization.SynchronizationDemonstration
 import kotlinx.android.synthetic.main.fragment_problem4.*
 import java.math.BigInteger
 import java.util.*
-import java.util.concurrent.atomic.AtomicInteger
 
 
 class ThreadWaitDemonstrationFragment : Fragment() {
@@ -36,7 +34,7 @@ class ThreadWaitDemonstrationFragment : Fragment() {
     @Volatile
     private var mThreadsComputationResults: Array<BigInteger?>? = arrayOf() // safe
 
-    private val mNumOfFinishedThreads = AtomicInteger(0) // safe
+    private var mNumOfFinishedThreads = 0 // safe
 
     private var mComputationTimeoutTime: Long = 0
 
@@ -105,7 +103,9 @@ class ThreadWaitDemonstrationFragment : Fragment() {
     private fun initComputationParams(factorialArgument: Int, timeout: Int) {
         mNumberOfThreads =
             if (factorialArgument < 20) 1 else Runtime.getRuntime().availableProcessors()
-        mNumOfFinishedThreads.set(0)
+        synchronized(THREADS_COMPLETION_LOCK){
+            mNumOfFinishedThreads = 0
+        }
         mAbortComputation = false
 
         mThreadsComputationResults = arrayOfNulls(mNumberOfThreads)
@@ -147,8 +147,9 @@ class ThreadWaitDemonstrationFragment : Fragment() {
                     product = product.multiply(BigInteger(num.toString()))
                 }
                 mThreadsComputationResults?.set(i, product)
-                mNumOfFinishedThreads.incrementAndGet()
+
                 synchronized(THREADS_COMPLETION_LOCK) {
+                    mNumOfFinishedThreads++
                     Log.d("myTag",
                         "in startComputation at THREADS_COMPLETION_LOCK notifyAll() | thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
                     THREADS_COMPLETION_LOCK.notify()
@@ -159,8 +160,8 @@ class ThreadWaitDemonstrationFragment : Fragment() {
 
     @WorkerThread
     private fun waitForThreadsResultsOrTimeoutOrAbort() {
-        while (mNumOfFinishedThreads.get() != mNumberOfThreads && !mAbortComputation && !isTimedOut()) {
-            synchronized(THREADS_COMPLETION_LOCK) {
+        synchronized(THREADS_COMPLETION_LOCK) {
+            while (mNumOfFinishedThreads != mNumberOfThreads && !mAbortComputation && !isTimedOut()) {
                 Log.d("myTag",
                     "in waitForThreadsResultsOrTimeoutOrAbort at synchronized(THREADS_COMPLETION_LOCK) | thread name => ${Thread.currentThread().name} | thread id => ${Thread.currentThread().id}")
                 THREADS_COMPLETION_LOCK.wait(getRemainingMillisToTimeout())
