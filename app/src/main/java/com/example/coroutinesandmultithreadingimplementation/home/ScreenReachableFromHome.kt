@@ -11,7 +11,7 @@ enum class ScreenReachableFromHome( name: String) {
     ATOMICITY_DEMONSTRATION("Atomicity Demo"),
     EXERCISE_4("Multithreading Problem(Factorial Calculation)"),
     THREAD_WAIT_DEMONSTRATION("Thread Wait Demo"),
-    EXERCISE_5("Exercise 5"),
+    EXERCISE_5("Receive messaging Problem"),
     DESIGN_WITH_THREADS_DEMONSTRATION("Design Demo: Threads"),
     EXERCISE_6("Exercise 6"),
     DESIGN_WITH_THREAD_POOL_DEMONSTRATION("Design Demo: Thread Pool"),

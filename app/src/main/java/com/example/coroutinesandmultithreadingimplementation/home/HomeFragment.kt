@@ -53,6 +53,7 @@ class HomeFragment : BaseFragment(), HomeArrayAdapter.Listener {
             ScreenReachableFromHome.ATOMICITY_DEMONSTRATION -> findNavController().navigate(R.id.atomicityDemonstrationFragment)
             ScreenReachableFromHome.EXERCISE_4 -> findNavController().navigate(R.id.problem4Fragment)
             ScreenReachableFromHome.THREAD_WAIT_DEMONSTRATION -> findNavController().navigate(R.id.threadWaitDemonstrationFragment)
+            ScreenReachableFromHome.EXERCISE_5 -> findNavController().navigate(R.id.problem5Fragment)
         }
     }
 

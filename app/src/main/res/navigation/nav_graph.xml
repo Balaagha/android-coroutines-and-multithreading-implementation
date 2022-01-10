@@ -55,5 +55,10 @@
         android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.threadwait.ThreadWaitDemonstrationFragment"
         android:label="ThreadWaitDemonstrationFragment"
         tools:layout="@layout/fragment_problem4" />
+    <fragment
+        android:id="@+id/problem5Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem5Fragment"
+        android:label="Problem5Fragment"
+        tools:layout="@layout/fragment_problem5" />
 
 </navigation>
