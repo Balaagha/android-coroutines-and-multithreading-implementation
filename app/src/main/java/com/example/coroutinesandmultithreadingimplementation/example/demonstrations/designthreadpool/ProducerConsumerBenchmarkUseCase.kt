@@ -4,8 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import com.example.coroutinesandmultithreadingimplementation.common.BaseObservable
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicInteger
 
 class ProducerConsumerBenchmarkUseCase :
@@ -13,7 +12,7 @@ class ProducerConsumerBenchmarkUseCase :
 
     private val LOCK = Object()
 
-    private val NUM_OF_MESSAGES = 1000
+    private val NUM_OF_MESSAGES = 10000
     private val BLOCKING_QUEUE_CAPACITY = 5
 
     private val mUiHandler = Handler(Looper.getMainLooper())
@@ -24,7 +23,32 @@ class ProducerConsumerBenchmarkUseCase :
 
 
     //    private lateinit var mThreadPool: ExecutorService
-    private val mThreadPool: ExecutorService = Executors.newCachedThreadPool { r ->
+    /**
+     * when we call newCachedThreadPool, it means that this thread pool will create a new threads whenever needed. But then after the operation completes, it will use the same thread
+     * But we use more threads(E.g. 100000) we see outofmemory error
+        private val mThreadPool: ExecutorService = Executors.newCachedThreadPool { r ->
+        Log.d("ThreadFactory", "thread: " + mNumOfThreads.incrementAndGet())
+        Thread(r)
+     * For Solution it we can use newFixedThreadPool,but it not work as we want, because
+        private val mThreadPool: ExecutorService = Executors.newFixedThreadPool (1000 )
+
+    }
+     */
+
+    /**
+     * @params
+     * corePoolSize => ?
+     * maximumPoolSize => It defines the maximum number of threads that will be available inside this  Thread pool
+     * keepAliveTime => It defines the time that each specific thread will be kept alive inside this thread pool after it is no longer in use,
+     *
+     */
+    private var mThreadPool: ThreadPoolExecutor = ThreadPoolExecutor(
+        1000,
+        Int.MAX_VALUE,
+        0,
+        TimeUnit.SECONDS,
+        SynchronousQueue()
+    ) { r ->
         Log.d("ThreadFactory", "thread: " + mNumOfThreads.incrementAndGet())
         Thread(r)
     }
