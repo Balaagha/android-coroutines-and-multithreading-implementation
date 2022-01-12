@@ -70,4 +70,10 @@
         android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthread.DesignWithThreadDemonstrationFragment"
         android:label="DesignWithThreadDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
+    <fragment
+        android:id="@+id/designWithThreadPoolDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadpool.DesignWithThreadPoolDemonstrationFragment"
+        android:label="DesignWithThreadPoolDemonstrationFragment"
+        tools:layout="@layout/fragment_design_with_thread_demonstration"/>
+
 </navigation>

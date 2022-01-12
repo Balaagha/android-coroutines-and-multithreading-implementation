@@ -1,9 +1,12 @@
-package com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthread
+package com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadpool
 
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import com.example.coroutinesandmultithreadingimplementation.common.BaseObservable
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
 
 class ProducerConsumerBenchmarkUseCase :
     BaseObservable<ProducerConsumerBenchmarkUseCase.Listener>() {
@@ -17,52 +20,69 @@ class ProducerConsumerBenchmarkUseCase :
 
     private val mBlockingQueue = MyBlockingQueue(BLOCKING_QUEUE_CAPACITY)
 
+    private val mNumOfThreads = AtomicInteger(0)
+
+
+    //    private lateinit var mThreadPool: ExecutorService
+    private val mThreadPool: ExecutorService = Executors.newCachedThreadPool { r ->
+        Log.d("ThreadFactory", "thread: " + mNumOfThreads.incrementAndGet())
+        Thread(r)
+    }
+
     private var mNumOfFinishedConsumers = 0
     private var mNumOfReceivedMessages = 0
     private var mStartTimestamp: Long = 0
 
     fun startBenchmarkAndNotify() {
         synchronized(LOCK) {
+//            mThreadPool = Executors.newCachedThreadPool { r ->
+//                Log.d("ThreadFactory", "thread: " + mNumOfThreads.incrementAndGet())
+//                Thread(r)
+//            }
+
             mNumOfReceivedMessages = 0
             mNumOfFinishedConsumers = 0
             mStartTimestamp = System.currentTimeMillis()
+            mNumOfThreads.set(0)
         }
 
         // watcher-reporter thread
-        Thread(Runnable {
-            synchronized(LOCK) {
-                while (mNumOfFinishedConsumers < NUM_OF_MESSAGES) {
-                    try {
-                        LOCK.wait()
-                    } catch (e: InterruptedException) {
-                        return@Runnable
+        mThreadPool.execute(
+            Runnable {
+                synchronized(LOCK) {
+                    while (mNumOfFinishedConsumers < NUM_OF_MESSAGES) {
+                        try {
+                            LOCK.wait()
+                        } catch (e: InterruptedException) {
+                            return@Runnable
+                        }
                     }
                 }
+                notifySuccess()
             }
-            notifySuccess()
-        }).start()
+        )
 
         // producers init thread
-        Thread {
+        mThreadPool.execute {
             for (i in 0 until NUM_OF_MESSAGES) {
                 startNewProducer(i)
             }
-        }.start()
+        }
 
         // consumers init thread
-        Thread {
+        mThreadPool.execute {
             for (i in 0 until NUM_OF_MESSAGES) {
                 startNewConsumer()
             }
-        }.start()
+        }
     }
 
     private fun startNewProducer(index: Int) {
-        Thread { mBlockingQueue.put(index) }.start()
+        mThreadPool.execute { mBlockingQueue.put(index) }
     }
 
     private fun startNewConsumer() {
-        Thread {
+        mThreadPool.execute {
             val message = mBlockingQueue.take()!!
             synchronized(LOCK) {
                 if (message != -1) {
@@ -71,7 +91,7 @@ class ProducerConsumerBenchmarkUseCase :
                 mNumOfFinishedConsumers++
                 LOCK.notifyAll()
             }
-        }.start()
+        }
     }
 
     private fun notifySuccess() {
@@ -84,15 +104,14 @@ class ProducerConsumerBenchmarkUseCase :
                         mNumOfReceivedMessages
                     )
             }
-            Log.d("myTag","@notifySuccess pass synchronized")
+            Log.d("myTag", "@notifySuccess pass synchronized")
             getListeners()?.let { listeners ->
-                Log.d("myTag","@notifySuccess in have listener")
+                Log.d("myTag", "@notifySuccess in have listener")
                 for (listener in listeners) {
-                    Log.d("myTag","@notifySuccess if have listener in for")
+                    Log.d("myTag", "@notifySuccess if have listener in for")
                     listener.onBenchmarkCompleted(result)
                 }
             }
-
         }
     }
 
