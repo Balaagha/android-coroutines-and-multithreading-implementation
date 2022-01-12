@@ -10,10 +10,10 @@ enum class ScreenReachableFromHome( name: String) {
     PROBLEM_3("Count in back thread and show it in Ui(with runnable)"),
     ATOMICITY_DEMONSTRATION("Atomicity Demo"),
     EXERCISE_4("Multithreading Problem(Factorial Calculation)"),
+    EXERCISE_4_WITH_USE_CASE("Multithreading Problem(Factorial Calculation) with UseCase"),
     THREAD_WAIT_DEMONSTRATION("Thread Wait Demo"),
     EXERCISE_5("Receive messaging Problem"),
     DESIGN_WITH_THREADS_DEMONSTRATION("Design Demo: Threads"),
-    EXERCISE_6("Exercise 6"),
     DESIGN_WITH_THREAD_POOL_DEMONSTRATION("Design Demo: Thread Pool"),
     EXERCISE_7("Exercise 7") ;
     private var mName: String? = null
