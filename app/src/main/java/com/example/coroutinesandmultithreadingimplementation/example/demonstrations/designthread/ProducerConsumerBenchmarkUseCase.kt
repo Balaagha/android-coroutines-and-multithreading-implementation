@@ -10,7 +10,7 @@ class ProducerConsumerBenchmarkUseCase :
 
     private val LOCK = Object()
 
-    private val NUM_OF_MESSAGES = 10000
+    private val NUM_OF_MESSAGES = 1000
     private val BLOCKING_QUEUE_CAPACITY = 5
 
     private val mUiHandler = Handler(Looper.getMainLooper())
