@@ -75,5 +75,10 @@
         android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadpool.DesignWithThreadPoolDemonstrationFragment"
         android:label="DesignWithThreadPoolDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
+    <fragment
+        android:id="@+id/designWithAsyncTaskDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designasynctask.DesignWithAsyncTaskDemonstrationFragment"
+        android:label="DesignWithAsyncTaskDemonstrationFragment"
+        tools:layout="@layout/fragment_design_with_thread_demonstration"/>
 
 </navigation>

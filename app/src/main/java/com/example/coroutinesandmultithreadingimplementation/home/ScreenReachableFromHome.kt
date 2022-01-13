@@ -15,7 +15,11 @@ enum class ScreenReachableFromHome( name: String) {
     EXERCISE_5("Receive messaging Problem"),
     DESIGN_WITH_THREADS_DEMONSTRATION("Design Demo: Threads"),
     DESIGN_WITH_THREAD_POOL_DEMONSTRATION("Design Demo: Thread Pool"),
-    EXERCISE_7("Exercise 7") ;
+    EXERCISE_7("Exercise 7"),
+    DESIGN_WITH_ASYNCTASK_DEMONSTRATION("Design Demo: AsyncTask")
+    ;
+
+
     private var mName: String? = null
     init{
         mName = name

@@ -57,6 +57,7 @@ class HomeFragment : BaseFragment(), HomeArrayAdapter.Listener {
             ScreenReachableFromHome.EXERCISE_5 -> findNavController().navigate(R.id.problem5Fragment)
             ScreenReachableFromHome.DESIGN_WITH_THREADS_DEMONSTRATION -> findNavController().navigate(R.id.designWithThreadDemonstrationFragment)
             ScreenReachableFromHome.DESIGN_WITH_THREAD_POOL_DEMONSTRATION -> findNavController().navigate(R.id.designWithThreadPoolDemonstrationFragment)
+            ScreenReachableFromHome.DESIGN_WITH_ASYNCTASK_DEMONSTRATION -> findNavController().navigate(R.id.designWithAsyncTaskDemonstrationFragment)
         }
     }
 
