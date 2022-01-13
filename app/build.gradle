@@ -58,5 +58,8 @@ dependencies {
 
     implementation 'com.techyourchance:fragmenthelper:0.8.0'
 
+    // Thread Poster
+    implementation 'com.techyourchance.threadposter:threadposter:0.8.3'
+
 
 }
