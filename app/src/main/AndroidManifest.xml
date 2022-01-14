@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MenuActivity"
+            android:name=".menu.MenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,15 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+<!--    MultiThreading Implementation    -->
         <activity
             android:name=".androidmultithreadingmasterclass.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+<!--    Coroutines Implementation 1 start    -->
+        <activity
+            android:name=".androidcoroutinesmasterclass.CoroutineMainActivity"
+            android:exported="true" />
+<!--    Coroutines Implementation 1 end    -->
+
     </application>
 
 </manifest>
