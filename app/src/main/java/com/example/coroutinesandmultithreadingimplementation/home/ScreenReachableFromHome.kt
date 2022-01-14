@@ -19,6 +19,7 @@ enum class ScreenReachableFromHome( name: String) {
     DESIGN_WITH_ASYNCTASK_DEMONSTRATION("Design Demo: AsyncTask"),
     DESIGN_WITH_THREAD_POSTER_DEMONSTRATION("Design Demo: ThreadPoster"),
     DESIGN_WITH_COROUTINES_DEMONSTRATION("Design Demo: Coroutines"),
+    EXERCISE_4_WITH_COROUTINES("Multithreading Problem(Factorial Calculation) with Coroutines"),
     ;
 
 

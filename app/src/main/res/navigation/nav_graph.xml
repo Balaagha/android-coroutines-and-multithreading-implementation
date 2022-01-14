@@ -90,6 +90,12 @@
         android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadcoroutines.DesignWithCoroutinesDemonstrationFragment"
         android:label="DesignWithCoroutinesDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
+    <fragment
+        android:id="@+id/problem4WithCoroutinesFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem4WithCoroutinesFragment"
+        android:label="Problem4WithCoroutinesFragment"
+        tools:layout="@layout/fragment_problem4_with_coroutines"/>
+
 
 
 </navigation>
