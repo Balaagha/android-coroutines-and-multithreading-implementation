@@ -54,14 +54,14 @@ class ProducerConsumerBenchmarkUseCase {
     }
 
 
-    private fun CoroutineScope.startNewProducer(index: Int) = launch(Dispatchers.Unconfined)  {
+    private fun CoroutineScope.startNewProducer(index: Int) = launch(Dispatchers.IO)  {
         Thread.sleep(10)
         Log.d("ProducerAndConsumer","producer ${numOfProducers.incrementAndGet()} started; " +
                 "on thread ${Thread.currentThread().name}")
         blockingQueue.put(index)
     }
 
-    private fun CoroutineScope.startNewConsumer() = launch(Dispatchers.Unconfined) {
+    private fun CoroutineScope.startNewConsumer() = launch(Dispatchers.IO) {
         Log.d("ProducerAndConsumer","consumer ${numOfConsumers.incrementAndGet()} started; " +
                 "on thread ${Thread.currentThread().name}")
         val message = blockingQueue.take()
