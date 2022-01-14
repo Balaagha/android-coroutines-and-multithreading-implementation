@@ -7,92 +7,92 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.home.HomeFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/problem1Fragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem1Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.Problem1Fragment"
         android:label="Problem1Fragment"
         tools:layout="@layout/fragment_problem1"/>
     <fragment
         android:id="@+id/problem2Fragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem2Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.Problem2Fragment"
         android:label="fragment_problem2"
         tools:layout="@layout/fragment_problem2" />
     <fragment
         android:id="@+id/uiThreadDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.uithread.UiThreadDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.uithread.UiThreadDemonstrationFragment"
         android:label="fragment_ui_thread_demonstration"
         tools:layout="@layout/fragment_ui_thread_demonstration" />
     <fragment
         android:id="@+id/uiHandlerDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.uihandler.UiHandlerDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.uihandler.UiHandlerDemonstrationFragment"
         android:label="UiHandlerDemonstrationFragment"
         tools:layout="@layout/fragment_ui_handler_demonstration" />
     <fragment
         android:id="@+id/customHandlerDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.customhandler.CustomHandlerDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.customhandler.CustomHandlerDemonstrationFragment"
         android:label="CustomHandlerDemonstrationFragment"
         tools:layout="@layout/fragment_custom_handler_demonstration" />
     <fragment
         android:id="@+id/problem3Fragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem3Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.Problem3Fragment"
         android:label="Problem3Fragment"
         tools:layout="@layout/fragment_problem3" />
     <fragment
         android:id="@+id/atomicityDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.atomicity.AtomicityDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.atomicity.AtomicityDemonstrationFragment"
         android:label="fragment_atomicity_demonstration"
         tools:layout="@layout/fragment_atomicity_demonstration" />
     <fragment
         android:id="@+id/problem4Fragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem4Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.Problem4Fragment"
         android:label="Problem4Fragment"
         tools:layout="@layout/fragment_problem4" />
     <fragment
         android:id="@+id/problem4WithUseCaseSolutionFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem4WithUseCaseSolutionFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.Problem4WithUseCaseSolutionFragment"
         android:label="Problem4WithUseCaseSolutionFragment"
         tools:layout="@layout/fragment_problem4" />
     <fragment
         android:id="@+id/threadWaitDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.threadwait.ThreadWaitDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.threadwait.ThreadWaitDemonstrationFragment"
         android:label="ThreadWaitDemonstrationFragment"
         tools:layout="@layout/fragment_problem4" />
     <fragment
         android:id="@+id/problem5Fragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem5Fragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.Problem5Fragment"
         android:label="Problem5Fragment"
         tools:layout="@layout/fragment_problem5" />
     <fragment
         android:id="@+id/designWithThreadDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthread.DesignWithThreadDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.designthread.DesignWithThreadDemonstrationFragment"
         android:label="DesignWithThreadDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
     <fragment
         android:id="@+id/designWithThreadPoolDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadpool.DesignWithThreadPoolDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.designthreadpool.DesignWithThreadPoolDemonstrationFragment"
         android:label="DesignWithThreadPoolDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
     <fragment
         android:id="@+id/designWithAsyncTaskDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designasynctask.DesignWithAsyncTaskDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.designasynctask.DesignWithAsyncTaskDemonstrationFragment"
         android:label="DesignWithAsyncTaskDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
     <fragment
         android:id="@+id/designWithThreadPosterDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadposter.DesignWithThreadPosterDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.designthreadposter.DesignWithThreadPosterDemonstrationFragment"
         android:label="DesignWithThreadPosterDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
     <fragment
         android:id="@+id/designWithCoroutinesDemonstrationFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadcoroutines.DesignWithCoroutinesDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.demonstrations.designthreadcoroutines.DesignWithCoroutinesDemonstrationFragment"
         android:label="DesignWithCoroutinesDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
     <fragment
         android:id="@+id/problem4WithCoroutinesFragment"
-        android:name="com.example.coroutinesandmultithreadingimplementation.example.Problem4WithCoroutinesFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.example.Problem4WithCoroutinesFragment"
         android:label="Problem4WithCoroutinesFragment"
         tools:layout="@layout/fragment_problem4_with_coroutines"/>
 
