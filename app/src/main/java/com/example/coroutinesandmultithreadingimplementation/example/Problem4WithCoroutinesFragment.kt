@@ -150,9 +150,7 @@ private class ComputeFactorialWithKotlinUseCase {
     private suspend fun computePartialProducts(computationRanges: Array<ComputationRange>) : List<BigInteger> = coroutineScope {
         return@coroutineScope computationRanges.map {
             computeProductForRangeAsync(it)
-        }.map {
-            it.await()
-        }
+        }.awaitAll()
     }
 
     private fun CoroutineScope.computeProductForRangeAsync(computationRange: ComputationRange) : Deferred<BigInteger> = async(Dispatchers.IO) {
