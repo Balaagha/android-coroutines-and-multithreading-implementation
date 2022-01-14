@@ -10,10 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.coroutinesandmultithreadingimplementation.R
 import kotlinx.android.synthetic.main.fragment_design_with_thread_demonstration.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.util.concurrent.atomic.AtomicInteger
 
 
@@ -25,6 +22,8 @@ class DesignWithCoroutinesDemonstrationFragment : Fragment() {
 
     private var showUiNonBlockedIndication : Boolean = false
 
+
+    private var job: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +43,7 @@ class DesignWithCoroutinesDemonstrationFragment : Fragment() {
             txtExecutionTime.text = ""
             progressBar.visibility = View.VISIBLE
 
-            CoroutineScope(Dispatchers.Main).launch {
+            job = CoroutineScope(Dispatchers.Main).launch {
                 val result = mProducerConsumerBenchmarkUseCase.startBenchmark()
                 onBenchmarkCompleted(result)
             }
@@ -56,14 +55,13 @@ class DesignWithCoroutinesDemonstrationFragment : Fragment() {
         Log.d("myTag","@onStart register listener")
         showUiNonBlockedIndication = true
         postUiNonBlockedIndication()
-//        mProducerConsumerBenchmarkUseCase.registerListener(this)
     }
 
     override fun onStop() {
         super.onStop()
-        showUiNonBlockedIndication = false
         Log.d("myTag","@onStop unRegister listener")
-//        mProducerConsumerBenchmarkUseCase.unregisterListener(this)
+        showUiNonBlockedIndication = false
+        job?.apply { cancel() }
     }
 
     private fun postUiNonBlockedIndication() {
