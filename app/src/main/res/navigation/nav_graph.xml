@@ -85,5 +85,11 @@
         android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadposter.DesignWithThreadPosterDemonstrationFragment"
         android:label="DesignWithThreadPosterDemonstrationFragment"
         tools:layout="@layout/fragment_design_with_thread_demonstration"/>
+    <fragment
+        android:id="@+id/designWithCoroutinesDemonstrationFragment"
+        android:name="com.example.coroutinesandmultithreadingimplementation.example.demonstrations.designthreadcoroutines.DesignWithCoroutinesDemonstrationFragment"
+        android:label="DesignWithCoroutinesDemonstrationFragment"
+        tools:layout="@layout/fragment_design_with_thread_demonstration"/>
+
 
 </navigation>

@@ -31,7 +31,7 @@ abstract class BaseObservable<LISTENER_CLASS> {
         }
     }
 
-    protected open fun getListeners(): Set<LISTENER_CLASS>? {
+    protected open fun getListeners(): Set<LISTENER_CLASS> {
         synchronized(MONITOR) {
             Log.d("myTag","in the getListeners function")
             return Collections.unmodifiableSet(HashSet(mListeners))
