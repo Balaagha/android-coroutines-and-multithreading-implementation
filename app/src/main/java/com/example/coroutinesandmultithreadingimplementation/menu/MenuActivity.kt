@@ -1,12 +1,11 @@
 package com.example.coroutinesandmultithreadingimplementation.menu
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.coroutinesandmultithreadingimplementation.R
-import com.example.coroutinesandmultithreadingimplementation.androidcoroutinesmasterclass.CoroutineMainActivity
+import com.example.coroutinesandmultithreadingimplementation.androidcoroutinesmasterclass.CoroutineOneActivity
 import com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.MainActivity
-import com.example.coroutinesandmultithreadingimplementation.androidmultithreadingmasterclass.home.HomeArrayAdapter
 import kotlinx.android.synthetic.main.activity_menu.*
 
 class MenuActivity : AppCompatActivity(),MenuArrayAdapter.Listener {
@@ -26,7 +25,7 @@ class MenuActivity : AppCompatActivity(),MenuArrayAdapter.Listener {
                 startActivity(Intent(this, MainActivity::class.java))
             }
             ScreenReachableFromMainMenu.COROUTINES_LUKAS -> {
-                startActivity(Intent(this, CoroutineMainActivity::class.java))
+                startActivity(Intent(this, CoroutineOneActivity::class.java))
             }
         }
     }

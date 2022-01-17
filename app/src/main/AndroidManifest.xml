@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.coroutinesandmultithreadingimplementation">
 
+<!--  Application
+    .MyApplication => is general
+    .androidcoroutinesmasterclass.CoroutineUsecasesOnAndroidApplication => For coroutines one implementation
+  -->
     <application
-        android:name=".MyApplication"
+        android:name=".androidcoroutinesmasterclass.CoroutineUsecasesOnAndroidApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,16 +24,34 @@
             </intent-filter>
         </activity>
 
-<!--    MultiThreading Implementation    -->
+        <!--    MultiThreading Implementation start   -->
         <activity
             android:name=".androidmultithreadingmasterclass.MainActivity"
             android:exported="true" />
+        <!--    MultiThreading Implementation end    -->
 
-<!--    Coroutines Implementation 1 start    -->
+        <!--    Coroutines Implementation 1 start    -->
         <activity
-            android:name=".androidcoroutinesmasterclass.CoroutineMainActivity"
+            android:name=".androidcoroutinesmasterclass.CoroutineOneActivity"
             android:exported="true" />
-<!--    Coroutines Implementation 1 end    -->
+        <activity android:name=".androidcoroutinesmasterclass.base.UseCaseActivity" />
+        <activity
+            android:name=".androidcoroutinesmasterclass.usecases.coroutines.usecase1.PerformSingleNetworkRequestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".androidcoroutinesmasterclass.usecases.coroutines.usecase2.Perform2SequentialNetworkRequestsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".androidcoroutinesmasterclass.usecases.coroutines.usecase2.callbacks.SequentialNetworkRequestsCallbacksActivity"
+            android:exported="true" />
+        <activity
+            android:name=".androidcoroutinesmasterclass.usecases.coroutines.usecase2.rx.SequentialNetworkRequestsRxActivity"
+            android:exported="true" />
+        <activity
+            android:name=".androidcoroutinesmasterclass.usecases.coroutines.usecase3.PerformNetworkRequestsConcurrentlyActivity"
+            android:exported="true" />
+
+        <!--    Coroutines Implementation 1 end    -->
 
     </application>
 
