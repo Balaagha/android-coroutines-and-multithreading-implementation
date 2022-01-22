@@ -16,5 +16,6 @@ fun main() = runBlocking<Unit> {
 
 suspend fun networkRequest(): String {
     delay(500)
+    println("networkRequest suspend func  call")
     return "Result"
 }
